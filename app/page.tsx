@@ -1,69 +1,245 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import {
+  Menu,
+  Bell,
+  ChevronRight,
+  Heart,
+  Apple,
+  Bot,
+  ChartNoAxesColumn,
+  House,
+  CalendarDays,
+  UserRound,
+} from "lucide-react";
+
+const actions = [
+  { label: "Cycle", href: "/calendar", Icon: Heart, color: "action-purple" },
+  { label: "Nutrition", href: "/nutrition", Icon: Apple, color: "action-teal" },
+  { label: "AI Mentor", href: "/ai-mentor", Icon: Bot, color: "action-blue" },
+  {
+    label: "Insights",
+    href: "/insights",
+    Icon: ChartNoAxesColumn,
+    color: "action-pink",
+  },
+];
+
+const tabs = [
+  { label: "Home", href: "/", Icon: House },
+  { label: "Calendar", href: "/calendar", Icon: CalendarDays },
+  { label: "Nutrition", href: "/nutrition", Icon: Apple },
+  { label: "AI Mentor", href: "/ai-mentor", Icon: Bot },
+  { label: "Insights", href: "/insights", Icon: ChartNoAxesColumn },
+  { label: "Profile", href: "/profile", Icon: UserRound },
+];
+
+const themes = [
+  {
+    id: "sunset",
+    name: "Sunset",
+    image: "/themes/sunset.png",
+    dot: "linear-gradient(135deg,#ffb88c,#d76d9b)",
+    bg: "linear-gradient(180deg,#f9d6ea 0%,#e6c9f2 50%,#cdb4f0 100%)",
+  },
+  {
+    id: "sakura",
+    name: "Sakura",
+    image: "/themes/sakura.jpg",
+    dot: "linear-gradient(135deg,#ffc2dd,#f48fb8)",
+    bg: "linear-gradient(180deg,#fde1ee 0%,#f6cde3 50%,#e9bfdc 100%)",
+  },
+  {
+    id: "ocean",
+    name: "Ocean",
+    image: "/themes/ocean.jpg",
+    dot: "linear-gradient(135deg,#9ee7e0,#6fa8f0)",
+    bg: "linear-gradient(180deg,#dff2f5 0%,#c9e0f4 50%,#b9c9f0 100%)",
+  },
+  {
+    id: "night",
+    name: "Night",
+    image: "/themes/night.jpg",
+    dot: "linear-gradient(135deg,#8a7bd8,#3b2d6b)",
+    bg: "linear-gradient(180deg,#d9cff2 0%,#b9a8e8 50%,#9a8ad8 100%)",
+  },
+  {
+    id: "forest",
+    name: "Forest",
+    image: "/themes/forest.jpg",
+    dot: "linear-gradient(135deg,#a8e6b5,#4fa88a)",
+    bg: "linear-gradient(180deg,#e2f4e6 0%,#cfe9dc 50%,#bfdcd6 100%)",
+  },
+];
+
+export default function HomePage() {
+  const [themeId, setThemeId] = useState("sunset");
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("bloom-theme");
+      if (saved && themes.some((t) => t.id === saved)) setThemeId(saved);
+    } catch {}
+  }, []);
+
+  function chooseTheme(id: string) {
+    setThemeId(id);
+    try {
+      localStorage.setItem("bloom-theme", id);
+    } catch {}
+  }
+
+  const theme = themes.find((t) => t.id === themeId) ?? themes[0];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <main className="bloom-home">
+      <div
+        className="home-phone"
+        data-theme={theme.id}
+        style={{ ["--theme-bg" as string]: theme.bg }}
+      >
+        <div className="home-landscape" aria-hidden="true" />
+
+        <div className="home-inner">
+          <div className="home-status">
+            <span>9:41</span>
+            <span>◖ ▰ ▰</span>
+          </div>
+
+          <header className="home-topbar">
+            <button
+              className="home-round-button"
+              aria-label="Menu"
+              onClick={() => alert("Menu coming soon!")}
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              <Menu size={16} />
+            </button>
+
+            <Link
+              href="/profile"
+              className="home-round-button"
+              aria-label="Notifications and profile"
             >
-              Learning
-            </a>{" "}
-            center.
+              <Bell size={16} />
+            </Link>
+          </header>
+
+          <section className="home-greeting">
+            <h1>
+              Hello, <span className="user-name">User</span>
+            </h1>
+
+            <p>Let&apos;s take care of you today!</p>
+
+            <span className="greeting-sparkle sparkle-a">⌁</span>
+            <span className="greeting-sparkle sparkle-b">⌁</span>
+          </section>
+
+          <div className="theme-picker" aria-label="Choose theme">
+            {themes.map((t) => (
+              <button
+                key={t.id}
+                onClick={() => chooseTheme(t.id)}
+                aria-label={`${t.name} theme`}
+                aria-pressed={t.id === themeId}
+                className={`theme-dot ${t.id === themeId ? "theme-dot-active" : ""}`}
+                style={{ background: t.dot }}
+              />
+            ))}
+          </div>
+
+          <div className="cycle-wrap">
+            <div
+              className="cycle-scenery-bg"
+              aria-hidden="true"
+              style={{ backgroundImage: `url(${theme.image})` }}
+            />
+
+            <section className="home-cycle-card">
+              <div className="cycle-card-copy">
+                <p className="home-eyebrow">Your Cycle</p>
+                <h2>Day 7</h2>
+                <p className="cycle-phase">Follicular Phase</p>
+
+                <Link href="/calendar" className="home-calendar-button">
+                  View Calendar <ChevronRight size={12} />
+                </Link>
+              </div>
+
+              <Link
+                href="/calendar"
+                className="cycle-progress"
+                aria-label="Cycle day 7 of 28. Open calendar"
+              >
+                <div className="cycle-progress-inner">
+                  <strong>7/28</strong>
+                </div>
+              </Link>
+            </section>
+          </div>
+
+          <section className="home-focus-card">
+            <div className="focus-copy">
+              <h2>Today&apos;s Focus</h2>
+              <p>Stay hydrated &amp; eat nourishing foods</p>
+            </div>
+            <div
+              className="focus-illustration"
+              aria-label="Water bottle and plant"
+            >
+              <span className="focus-leaf">🌿</span>
+              <span className="focus-bottle">🧴</span>
+              <span className="focus-plant">🪴</span>
+            </div>
+          </section>
+
+          <section className="home-actions-card">
+            <h2>Quick Actions</h2>
+            <div className="home-actions-grid">
+              {actions.map(({ label, href, Icon, color }) => (
+                <Link href={href} className="home-action" key={label}>
+                  <span className={`home-action-icon ${color}`}>
+                    <Icon size={17} strokeWidth={2} />
+                  </span>
+                  <span>{label}</span>
+                </Link>
+              ))}
+            </div>
+          </section>
+
+          <section className="home-quote-card">
+            <div>
+              <h2>“Small steps,</h2>
+              <h2>big changes!”</h2>
+            </div>
+            <div className="quote-flower" aria-hidden="true">
+              🌷
+            </div>
+          </section>
+
+          <p className="home-footer">
+            Made with care for your wellness <span>♥</span>
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+
+        <nav className="home-bottom-nav" aria-label="Main navigation">
+          {tabs.map(({ label, href, Icon }) => (
+            <Link
+              key={href}
+              href={href}
+              className={`home-nav-item ${href === "/" ? "home-nav-active" : ""}`}
+              aria-current={href === "/" ? "page" : undefined}
+            >
+              <span className="home-nav-icon">
+                <Icon size={14} strokeWidth={1.8} />
+              </span>
+              <span>{label}</span>
+            </Link>
+          ))}
+        </nav>
+      </div>
+    </main>
   );
 }

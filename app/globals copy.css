@@ -1,0 +1,486 @@
+/* =========================================
+   BLOOM HOME — merged (same look as before)
+   ========================================= */
+
+.bloom-home {
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  color: #594766;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  background:
+    radial-gradient(ellipse at 12% 8%, #f8d7e8 0%, transparent 40%),
+    radial-gradient(ellipse at 92% 18%, #dcd4f7 0%, transparent 43%),
+    linear-gradient(145deg, #f7e9f2, #eeebf8 60%, #e5f2f1);
+}
+
+.home-phone {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  box-sizing: border-box;
+  width: min(100%, 420px);
+  min-height: 844px;
+  padding: 10px 14px 82px;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  background: transparent;
+}
+
+.home-landscape {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(246, 232, 246, 0.12), rgba(246, 232, 246, 0.04)),
+    url("/sunset.png") center / cover no-repeat;
+}
+
+.home-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  box-sizing: border-box;
+  padding-bottom: 20px;
+}
+
+/* ---------- Status bar & top bar ---------- */
+
+.home-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 17px;
+  padding: 0 9px;
+  color: white;
+  font-size: 8px;
+  font-weight: 800;
+  text-shadow: 0 1px 5px #65517466;
+}
+
+.home-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px 2px 12px;
+}
+
+.home-round-button {
+  display: grid;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  padding: 0;
+  color: #887a9b;
+  border: 1px solid #ffffffa8;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.43);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* ---------- Greeting ---------- */
+
+.home-greeting {
+  position: relative;
+  padding: 4px 3px 14px;
+}
+
+.home-greeting h1 {
+  margin: 0 0 5px;
+  color: #7753b8;
+  font-size: 30px;
+  line-height: 1.3;
+  font-weight: 800;
+  letter-spacing: -0.65px;
+}
+
+.home-greeting p {
+  margin: 0;
+  color: #0a0a0a;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.greeting-sparkle {
+  position: absolute;
+  color: #8b81a9;
+  font-size: 19px;
+  font-weight: 300;
+}
+
+.sparkle-a {
+  right: 36px;
+  bottom: -2px;
+  transform: rotate(20deg);
+}
+
+.sparkle-b {
+  right: 16px;
+  bottom: 2px;
+  transform: rotate(-20deg);
+}
+
+/* ---------- Shared glass card ---------- */
+
+.home-cycle-card,
+.home-focus-card,
+.home-actions-card,
+.home-quote-card {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 22px;
+  background: rgba(255, 249, 253, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 5px 18px rgba(111, 79, 132, 0.08);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+/* ---------- Cycle card ---------- */
+
+.home-cycle-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 165px;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.cycle-card-copy {
+  position: relative;
+  z-index: 2;
+}
+
+.home-eyebrow {
+  margin: 0 0 7px;
+  color: #766583;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.cycle-card-copy h2 {
+  margin: 8px 0 5px;
+  color: #9060df;
+  font-size: 30px;
+  line-height: 1.3;
+  font-weight: 800;
+  letter-spacing: -0.6px;
+}
+
+.cycle-phase {
+  margin: 0;
+  color: #8a7b96;
+  font-size: 11px;
+}
+
+.home-calendar-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-top: 10px;
+  padding: 9px 13px;
+  color: #79658d;
+  border: 1px solid #ffffffd6;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.58);
+  font-size: 10px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.cycle-progress {
+  position: relative;
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from -45deg,
+    #a17be8 0deg,
+    #d9a1e8 90deg,
+    #f09bc5 180deg,
+    rgba(255, 255, 255, 0.67) 180deg,
+    rgba(255, 255, 255, 0.67) 360deg
+  );
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.25);
+  text-decoration: none;
+}
+
+.cycle-progress::before {
+  position: absolute;
+  inset: 5px;
+  content: "";
+  border-radius: 50%;
+  background: linear-gradient(145deg, #fffaff, #f6e9f6);
+}
+
+.cycle-progress-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.cycle-progress-inner strong {
+  color: #9664c9;
+  font-size: 19px;
+  font-weight: 800;
+}
+
+/* ---------- Today's Focus ---------- */
+
+.home-focus-card {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 92px;
+  margin-top: 11px;
+  padding: 14px;
+  overflow: hidden;
+}
+
+.focus-copy {
+  position: relative;
+  z-index: 2;
+}
+
+.focus-copy h2 {
+  margin: 0 0 7px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.focus-copy p {
+  margin: 0 0 3px;
+  color: #857590;
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+.focus-illustration {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  width: 70px;
+  height: 48px;
+  font-size: 25px;
+}
+
+.focus-bottle {
+  position: relative;
+  z-index: 2;
+  font-size: 29px;
+  filter: drop-shadow(0 3px 3px #8c94a044);
+}
+
+.focus-leaf {
+  position: absolute;
+  left: 0;
+  bottom: 3px;
+  font-size: 22px;
+}
+
+.focus-plant {
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  font-size: 21px;
+}
+
+/* ---------- Quick Actions ---------- */
+
+.home-actions-card {
+  margin-top: 11px;
+  padding: 14px 11px 12px;
+}
+
+.home-actions-card > h2 {
+  margin: 0 0 7px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.home-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  align-items: start;
+  justify-items: center;
+  width: 100%;
+  margin-top: 12px;
+}
+
+.home-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 7px;
+  width: 100%;
+  min-width: 0;
+  text-align: center;
+  color: #776786;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.home-action > span:last-child {
+  font-size: 10px;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.home-action-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border: 1px solid #ffffff9c;
+  border-radius: 15px;
+  color: white;
+  box-shadow: 0 4px 10px rgba(112, 82, 145, 0.15);
+}
+
+.home-action-icon svg {
+  width: 21px;
+  height: 21px;
+}
+
+.action-purple { background: linear-gradient(140deg, #d5a4fa, #9e6de4); }
+.action-teal   { background: linear-gradient(140deg, #8ee1d6, #39bcae); }
+.action-blue   { background: linear-gradient(140deg, #b7caff, #8e91ec); }
+.action-pink   { background: linear-gradient(140deg, #f5acd0, #e879b7); }
+
+/* ---------- Quote card ---------- */
+
+.home-quote-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 70px;
+  margin-top: 11px;
+  padding: 13px 16px;
+}
+
+.home-quote-card h2 {
+  margin: 0 0 3px;
+  font-size: 11px;
+  line-height: 1.6;
+  font-weight: 800;
+  letter-spacing: -0.15px;
+}
+
+.quote-flower {
+  margin-right: 6px;
+  font-size: 28px;
+  filter: drop-shadow(0 3px 4px #b38cb44a);
+}
+
+/* ---------- Footer ---------- */
+
+.home-footer {
+  margin: 12px 0 0;
+  color: #95829f;
+  text-align: center;
+  font-size: 10px;
+}
+
+.home-footer span {
+  color: #ee90bf;
+}
+
+/* ---------- Bottom navigation ---------- */
+
+.home-bottom-nav {
+  position: absolute;
+  z-index: 10;
+  left: 8px;
+  right: 8px;
+  bottom: max(8px, env(safe-area-inset-bottom));
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1px;
+  box-sizing: border-box;
+  padding: 8px 2px;
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 17px;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 5px 20px rgba(100, 76, 123, 0.13);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.home-nav-item {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: #93859d;
+  text-decoration: none;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.home-nav-icon {
+  display: grid;
+  place-items: center;
+  width: 23px;
+  height: 23px;
+  border-radius: 8px;
+}
+
+.home-nav-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.home-nav-active {
+  color: #8959d7;
+}
+
+.home-nav-active .home-nav-icon {
+  color: white;
+  background: linear-gradient(135deg, #b38af0, #e88ec7);
+  box-shadow: 0 3px 8px #ad7ce64d;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (min-width: 600px) {
+  .bloom-home {
+    padding: 16px;
+  }
+
+  .home-phone {
+    min-height: min(844px, calc(100dvh - 32px));
+    border-radius: 28px;
+    box-shadow: 0 18px 55px #78658c24;
+  }
+}
+
+@media (max-width: 380px) {
+  .home-greeting h1 {
+    font-size: 19px;
+  }
+
+  .home-action-icon {
+    width: 40px;
+    height: 40px;
+  }
+}
